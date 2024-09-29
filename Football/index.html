@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Football Updates</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <style>
+        /* Add this CSS to style the welcome banner */
+        #welcome-banner {
+            background-color: #f8f9fa;
+            color: #333;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 2px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="welcome-banner">
+        Welcome to Football Updates!
+        <p> Your reliable place for the latest football news</p>
+    </div>
+    <div id="page">
+        <div id="header">
+            <div>
+                <a href="index.html"><img src="images/Unknown Background Removed.png" alt="Logo" /></a>
+            </div>
+            <ul>
+                <li class="current"><a href="index.html"><span>Home</span></a></li>
+                <li><a href="international.html"><span>International Football</span></a></li>
+                <li><a href="season.html"><span>New Season</span></a></li>
+            </ul>
+        </div>
+        <div id="interactive-feature" align="center">
+            <h2>Random Football Facts - Increase your football knowledge</h2>
+            <p id="football-fact">Click the button to get a random football fact!</p>
+            <button onclick="displayRandomFact()">Get Football Fact</button>
+        </div>
+        <div id="quiz-section" align="center">
+            <h2>Football Quiz</h2>
+            <div id="quiz-container">
+                <p>Test your football knowledge! Press the "Question" button, and answer the 5 questions that appear. The result will be displayed at the end of the quiz.</p>
+                <p>**Do not type the last name of the players**</p>
+                <button onclick="displayQuestion()">Question</button>
+                <div id="question-container"></div>
+                <input type="text" id="answer-input" placeholder="Type your answer here">
+                <button onclick="checkAnswer()">Submit Answer</button>
+            </div>
+            <div id="result-container"></div>
+            <div id="feedback-container"></div>
+        </div>
+        <div id="body">
+            <ul>
+                <li>
+                    <h1><a href="international.html">EURO 2024</a></h1>
+                    <div>
+                        <a href="international.html"><img src="images/Euro.png" alt="Image"/></a>
+                    </div>
+                    <span>Euro 2024 Finals this Monday !!!</span>
+                    <p>The one-month-long Euro 2024 tournament is finally nearing its end. After many intense matches, the two strongest teams, England and Spain, will face off in the grand finale. This highly anticipated match promises to be a thrilling conclusion to an exciting tournament. Do not forget to watch it on July 15th at 4 A.M. JST</p>
+                    <a href="international.html" class="readmore">Read more</a>
+                </li>
+                <li>
+                    <h1><a href="international.html">Copa America</a></h1>
+                    <div>
+                        <a href="international.html"><img src="images/Copa.png" alt="Image" /></a>
+                    </div>
+                    <span>Copa Finals !Will it be Messi's last Copa tournament?</span>
+                    <p>Copa America 2024 has been an exhilarating tournament, showcasing the best football talent from South America. With stunning goals, dramatic upsets, and unforgettable moments, this year's competition has kept fans on the edge of their seats. Copa America Finals on July 15th at 9 A.M. JST<p>
+                    <a href="international.html" class="readmore">Read more</a>
+                </li>
+                <li>
+                    <h1><a href="season.html">New Season</a></h1>
+                    <div>
+                        <a href="season.html"><img src="images/NewSeason.png" alt="Image" /></a>
+                    </div>
+                    <span>New Season begins soon</span>
+                    <p>As the new football season kicks off, fans worldwide are eager to see how their favorite teams and players will perform. With new signings, strategic changes, and high expectations, this season promises to deliver top-notch football action. Keep up with the latest fixtures, results, and breaking news as the season unfolds.</p>
+                    <a href="season.html" class="readmore">Read more</a>
+                </li>
+            </ul>
+        </div>
+        <div id="footer">
+            <div id="footer">
+                <ul>
+                    <li>
+                        <h3 a href="https://www.fourfourtwo.com" align="center">FourFourTwo Magazine</h3>
+                        <div id="magazine">
+                            <a href="https://www.fourfourtwo.com"><img src="images/magazine.jpeg" alt="Image" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>Marca Magazine</h3>
+                        <div id="gallery">
+                            <a href="https://www.marca.com/en/football.html"><img src="images/marca.jpeg" alt="Image" /></a>
+                        </div>
+                    </li>
+                </ul>
+            <div>
+                <p class="footnote">Student ID 23229526; Name Sandip Bhandari</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        const facts = [
+            "The highest-scoring game in World Cup history was Austria's 7-5 victory over Switzerland in 1954.",
+            "The fastest goal in World Cup history was scored by Hakan Şükür of Turkey in 2002, just 11 seconds into the match.",
+            "The only player to win three World Cups is Pelé, with Brazil in 1958, 1962, and 1970.",
+            "The first World Cup was held in Uruguay in 1930, and the host nation won the tournament.",
+            "Lionel Messi has won the most Ballon d'Or awards, with 7 to his name."
+        ];
+
+        function displayRandomFact() {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            const factElement = document.getElementById('football-fact');
+            factElement.textContent = facts[randomIndex];
+        }
+
+        const questions = [
+            { question: "Which country has won the most World Cups?", answer: "Brazil" },
+            { question: "Who is known as the 'King of Football'?", answer: "Pele" },
+            { question: "Which player has won the most Ballon d'Or awards?", answer: "Messi" },
+            { question: "Ronaldo or Messi (Hint:- Ronaldo)", answer: "Ronaldo" },
+            { question: "Which player scored the 'Hand of God' goal?", answer: "Maradona" }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function displayQuestion() {
+            if (currentQuestionIndex < questions.length) {
+                const questionContainer = document.getElementById('question-container');
+                questionContainer.textContent = questions[currentQuestionIndex].question;
+                const feedbackContainer = document.getElementById('feedback-container');
+                feedbackContainer.textContent = ''; // Clear previous feedback
+            } else {
+                displayResult();
+            }
+        }
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer-input').value.trim().toLowerCase();
+            const correctAnswer = questions[currentQuestionIndex].answer.toLowerCase();
+
+            // Split the correct answer into parts
+            const answerParts = correctAnswer.split(' ');
+
+            // Check if the user answer matches any part of the correct answer
+            const isCorrect = answerParts.some(part => userAnswer === part);
+
+            const feedbackContainer = document.getElementById('feedback-container');
+            if (isCorrect) {
+                score++;
+                feedbackContainer.textContent = "Good Job!";
+            } else {
+                feedbackContainer.textContent = "Oops!";
+            }
+
+            currentQuestionIndex++;
+            document.getElementById('answer-input').value = '';
+            displayQuestion();
+        }
+
+        function displayResult() {
+            const resultContainer = document.getElementById('result-container');
+            resultContainer.textContent = `Your score is ${score} out of ${questions.length}.`;
+        }
+    </script>
+</body>
+</html>
